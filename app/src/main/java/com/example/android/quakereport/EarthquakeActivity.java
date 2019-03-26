@@ -25,7 +25,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity {
@@ -61,7 +63,16 @@ public class EarthquakeActivity extends AppCompatActivity {
                 double magnitude = properitesObject.getDouble("mag");
                 String location = properitesObject.getString("place");
                 long timestamp = properitesObject.getLong("time");
-                Log.d("QuakeReport","mag = "+magnitude+" place ="+location+" timestamp = "+timestamp+"\n");
+
+// convert seconds to milliseconds
+                Date date = new java.util.Date(timestamp);
+// the format of your date
+                SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+// give a timezone reference for formatting (see comment at the bottom)
+                sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT-4"));
+                String formattedDate = sdf.format(date);
+                Log.d("QuakeReport","mag = "+magnitude+" place ="+location+" date = "+formattedDate+"\n");
+                earthquakes.add(new ModelClass(magnitude,location,formattedDate));
             }
         } catch (JSONException e) {
             e.printStackTrace();
