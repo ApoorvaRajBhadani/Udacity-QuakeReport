@@ -64,15 +64,14 @@ public class EarthquakeActivity extends AppCompatActivity {
                 String location = properitesObject.getString("place");
                 long timestamp = properitesObject.getLong("time");
 
-// convert seconds to milliseconds
                 Date date = new java.util.Date(timestamp);
-// the format of your date
-                SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-// give a timezone reference for formatting (see comment at the bottom)
-                sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT-4"));
+                SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-YYYY");
+                SimpleDateFormat sdftime = new java.text.SimpleDateFormat("HH:mm:ss");
+                sdftime.setTimeZone(java.util.TimeZone.getTimeZone("GMT-4"));
                 String formattedDate = sdf.format(date);
+                String formattedTime = sdftime.format(date);
                 Log.d("QuakeReport","mag = "+magnitude+" place ="+location+" date = "+formattedDate+"\n");
-                earthquakes.add(new ModelClass(magnitude,location,formattedDate));
+                earthquakes.add(new ModelClass(magnitude,location,formattedDate,formattedTime));
             }
         } catch (JSONException e) {
             e.printStackTrace();

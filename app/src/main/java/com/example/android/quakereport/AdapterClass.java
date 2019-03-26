@@ -38,11 +38,15 @@ public class AdapterClass extends BaseAdapter {
         TextView magnitudeTextView= (TextView)convertView.findViewById(R.id.magnitude_textview);
         TextView locationTextView= (TextView)convertView.findViewById(R.id.location_textview);
         TextView dateTextView= (TextView)convertView.findViewById(R.id.date_textview);
+        TextView timeTextView= (TextView)convertView.findViewById(R.id.time_textview);
+
 
         final ModelClass modelTemp = model.get(position);
         magnitudeTextView.setText(Double.toString(modelTemp.getMagnitude()));
         locationTextView.setText(modelTemp.getLocation());
         dateTextView.setText(modelTemp.getDate());
+        timeTextView.setText(modelTemp.getTime());
+
 
         return convertView;
 
